@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import App from './src/App';
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import ErrorPage from './Pages/ErrorPage';
-import Home from './Pages/Home';
-import AdminLogin from './Pages/AdminLogin';
-import AdminDashboard from './Pages/AdminDashboard';
+import ErrorPage from './src/ErrorPage';
+import AdminDashboard from './src/AdminDashboard';
 import AdminHome from './components/AdminHome';
 
 
@@ -16,28 +14,6 @@ const router=createBrowserRouter([
     path:"/",
     element: <App/>,
     errorElement: <ErrorPage/>,
-    children:[
-      {
-        path:"/",
-        element:<Home/>
-      },
-      {
-        path:"/about",
-        element:<Home/>
-      },
-      {
-        path:"/gallery",
-        element:<Home/>
-      },
-      {
-        path:"/admission",
-        element:<Home/>
-      },
-      {
-        path:"/adminlogin",
-        element:<AdminLogin/>
-      }
-    ]
   },
   {
     path:"/admin",

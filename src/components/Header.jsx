@@ -85,11 +85,12 @@ const Header = () => {
 
     useEffect(()=>{
         isSmFunc();
-    })
+    },[])
 
 
   return (
     <Wrapper>
+        <motion.div initial={{y:-10, opacity:0}} animate={{y:0, opacity:1}} transition={{duration:0.2}} className='headerMain' >
         <div className="leftHeader">
             <Link to="/" className="logo"><img src={schoolLogo} alt="failed to fetch logo" /></Link>
         <nav className="navList">
@@ -124,11 +125,14 @@ const Header = () => {
             <motion.div animate={!isVisible & isSm ?"show":"hide"} variants={var2}  className="line2"></motion.div>
             <motion.div variants={var2} animate={isVisible ?"animate1":"animate1back"} className="line3"></motion.div>
         </motion.div>)}
+        </motion.div>
     </Wrapper>
   )
 }
 
 const Wrapper=styled.div`
+
+.headerMain{
 width:100%;
 height:100%;
 display:flex;
@@ -136,6 +140,7 @@ flex-wrap:wrap;
 align-items:center;
 justify-content: space-between;
 user-select:none;
+}
 
 .leftHeader{
     margin-left: 30px;

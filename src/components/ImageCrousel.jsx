@@ -70,7 +70,7 @@ const CarouselInnerCont = styled.div`
     background-color: rgba(14, 14, 14, 0.5);
     border-radius: 5px;
     cursor: pointer;
-    z-index: 999;
+    z-index: 99;
   }
 
   .rightIcon {
