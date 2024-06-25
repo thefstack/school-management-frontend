@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './src/App';
+import App from './pages/App';
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import ErrorPage from './src/ErrorPage';
-import AdminDashboard from './src/AdminDashboard';
-import AdminHome from './components/AdminHome';
+import ErrorPage from './pages/ErrorPage';
+import Login from './pages/Login';
+import AdminHome from "./pages/AdminHome";
+import AdminDashboard from './components/AdminDashboard';
 
 
 const router=createBrowserRouter([
@@ -16,14 +17,19 @@ const router=createBrowserRouter([
     errorElement: <ErrorPage/>,
   },
   {
-    path:"/admin",
-    element:<AdminDashboard/>,
+    path:"/login",
+    element:<Login/>,
     errorElement: <ErrorPage/>,
+  },
+  {
+    path:"/admin",
+    element:<AdminHome/>,
+    errorElement:<ErrorPage/>,
     children:[
       {
         path:"/admin",
-        element:<AdminHome/>
-      },
+        element:<AdminDashboard/>
+      }
     ]
   },
   {

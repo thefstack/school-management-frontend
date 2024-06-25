@@ -4,7 +4,10 @@ import "../common.css"
 import Header from '../components/Header';
 import Home from "../components/Home"
 import {motion, useScroll, useMotionValueEvent} from "framer-motion";
-import About from "./About"
+import About from "../components/About"
+import Contact from '../components/Contact';
+import Footer from '../components/Footer';
+import { Reveal } from '../components/Reveal';
 
 
 
@@ -25,6 +28,7 @@ const App = () => {
       opacity:1
     }
   }
+
   useMotionValueEvent(scrollY,"change",(value)=>{
     const previous=scrollY.getPrevious();
     if(value > previous && value>100){
@@ -36,11 +40,15 @@ const App = () => {
       
   return (
     <Wrapper>
-      <motion.div transition={{type:"tween",}} variants={var1} animate={hideHeader ? "hide" :"show"} style={{zIndex:999, height:"60px",backgroundColor:"#ffba82",top:0, position:"sticky"}}><Header/></motion.div>
+      <motion.div transition={{type:"tween",}} variants={var1} animate={hideHeader ? "hide" :"show"} style={{zIndex:999, height:"60px",backgroundColor:"#ffba82",top:0, position:"sticky"}} ><Header/></motion.div>
 
-      <motion.div variants={var1} initial="opacity0" animate="opacity1" transition={{duration:0.6}}><Home/></motion.div>
+      <motion.div variants={var1} initial="opacity0" animate="opacity1" id='home-section' transition={{duration:0.6}}><Home/></motion.div>
 
-      <motion.div><About/></motion.div>
+      <Reveal width="100%" id='about-section'><About/></Reveal>
+
+      <Reveal width="100%" id='contact-section'><Contact/></Reveal>
+      
+      <Reveal width="100%"><Footer/></Reveal>
 
     </Wrapper>
   )

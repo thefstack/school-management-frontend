@@ -92,15 +92,14 @@ const Header = () => {
     <Wrapper>
         <motion.div initial={{y:-10, opacity:0}} animate={{y:0, opacity:1}} transition={{duration:0.2}} className='headerMain' >
         <div className="leftHeader">
-            <Link to="/" className="logo"><img src={schoolLogo} alt="failed to fetch logo" /></Link>
+            <a href="/" className="logo"><img src={schoolLogo} alt="failed to fetch logo" /></a>
         <nav className="navList">
-            <motion.div whileHover={{scale:1.1,transition:{duration:0.2}}} whileTap={{scale:0.9}} variants={var3}  initial="hide" animate="show"><Link className='navLink' to="#">Home</Link></motion.div>
-            <motion.div whileHover={{scale:1.1,transition:{duration:0.2}}} whileTap={{scale:0.9}} variants={var3}  initial="hide" animate="show"><Link className='navLink' to="#">About us</Link></motion.div>
-            <motion.div whileHover={{scale:1.1,transition:{duration:0.2}}} whileTap={{scale:0.9}} variants={var3}  initial="hide" animate="show"><Link className='navLink' to="#">Admission</Link></motion.div>
-            <motion.div whileHover={{scale:1.1,transition:{duration:0.2}}} whileTap={{scale:0.9}} variants={var3} initial="hide" animate="show"><Link className='navLink' to="#">Contact</Link></motion.div>
+            <motion.div whileHover={{scale:1.1,transition:{duration:0.2}}} whileTap={{scale:0.9}} variants={var3}  initial="hide" animate="show"><a className='navLink' href="#home-section">Home</a></motion.div>
+            <motion.div whileHover={{scale:1.1,transition:{duration:0.2}}} whileTap={{scale:0.9}} variants={var3}  initial="hide" animate="show"><a className='navLink' href="#about-section">About us</a></motion.div>
+            <motion.div whileHover={{scale:1.1,transition:{duration:0.2}}} whileTap={{scale:0.9}} variants={var3} initial="hide" animate="show"><a className='navLink' href="#contact-section">Contact Us</a></motion.div>
         </nav>
       </div>
-      <Link className="loginLink">Login</Link>
+      <Link to='/login' className="loginLink">Login</Link>
 
       <AnimatePresence>
       {isVisible & isSm && (<motion.div 
@@ -111,11 +110,11 @@ const Header = () => {
       variants={var1} 
       className="navMenuSm">
         <nav className="navListSm">
-            <motion.div whileHover={{scale:1.1,transition:{duration:0.2}}} whileTap={{scale:0.9}} variants={var3}  initial="hide" animate="show"><Link className='navLink' to="#">Home</Link></motion.div>
-            <motion.div whileHover={{scale:1.1,transition:{duration:0.2}}} whileTap={{scale:0.9}} variants={var3}  initial="hide" animate="show"><Link className='navLink' to="#">About us</Link></motion.div>
-            <motion.div whileHover={{scale:1.1,transition:{duration:0.2}}} whileTap={{scale:0.9}} variants={var3}  initial="hide" animate="show"><Link className='navLink' to="#">Admission</Link></motion.div>
-            <motion.div whileHover={{scale:1.1,transition:{duration:0.2}}} whileTap={{scale:0.9}} variants={var3} initial="hide" animate="show"><Link className='navLink' to="#">Contact</Link></motion.div>
-            <motion.div whileHover={{scale:1.1,transition:{duration:0.2}}} whileTap={{scale:0.9}} variants={var3} animate=""><Link className="loginLink">Login</Link></motion.div>
+            <motion.div whileHover={{scale:1.1,transition:{duration:0.2}}} whileTap={{scale:0.9}} variants={var3}  initial="hide" animate="show"><a className='navLink' href="#home-section">Home</a></motion.div>
+            <motion.div whileHover={{scale:1.1,transition:{duration:0.2}}} whileTap={{scale:0.9}} variants={var3}  initial="hide" animate="show"><a className='navLink' href="#about-section">About us</a></motion.div>
+            
+            <motion.div whileHover={{scale:1.1,transition:{duration:0.2}}} whileTap={{scale:0.9}} variants={var3} initial="hide" animate="show"><a className='navLink' href="#contact-section">Contact us</a></motion.div>
+            <motion.div whileHover={{scale:1.1,transition:{duration:0.2}}} whileTap={{scale:0.9}} variants={var3} animate=""><Link to="/login" className="loginLink">Login</Link></motion.div>
         </nav>
       </motion.div>)}
       </AnimatePresence>
@@ -131,6 +130,7 @@ const Header = () => {
 }
 
 const Wrapper=styled.div`
+width:100%;
 
 .headerMain{
 width:100%;
@@ -140,6 +140,8 @@ flex-wrap:wrap;
 align-items:center;
 justify-content: space-between;
 user-select:none;
+background:#FFBA82;
+
 }
 
 .leftHeader{
@@ -176,13 +178,14 @@ user-select:none;
     top: 0;
     width:100%;
     transform: translateX(-100%);
+    background-color:#b87136f7;
     .navListSm{
         display: flex;
         flex-direction: column;
         gap: 30px;
         height: max-content;
-        background-color: #000000dd;
         align-items: flex-start;
+        margin:40px 50px;
         padding: 50px 20px;
         min-height:100vh;
         .navLink{
@@ -203,6 +206,7 @@ user-select:none;
             font-weight: 500;
             letter-spacing: 1px;
             border-radius: 8px;
+            margin:0;
         }
 }
 }
@@ -230,6 +234,13 @@ user-select:none;
         .loginLink{
             display: flex;
         }
+    }
+}
+@media(max-width:400px){
+    .navMenuSm{
+        .navListSm{
+        margin:40px 20px;
+    }
     }
 }
 

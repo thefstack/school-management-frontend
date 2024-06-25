@@ -25,17 +25,18 @@ const Wrapper=styled.section`
 display:flex;
 justify-content:center;
 align-items:center;
-margin-top:100px;
 width:100%;
+min-height:100vh;
+
 
 .loginCont{
     display: flex;
-    background-color: rgba(255, 255, 255, 0.315);
+    background:#FFBA82;
     min-width: 400px;
     width: 50%;
     justify-content: center;
     border-radius: 15px;
-    box-shadow: 5px 5px 10px #00000086;
+    box-shadow: 10px 10px #EE7C20;
 }
 
 .loginForm{
