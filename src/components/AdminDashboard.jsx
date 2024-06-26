@@ -2,9 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import InfoCard from './InfoCard'
 import "../common.css"
-import GraphCard from './GraphCard'
+
 
 const AdminDashboard = () => {
+    const data=[10,8,12]
   return (
     <Wrapper>
       <div className="cont">
@@ -12,9 +13,6 @@ const AdminDashboard = () => {
             <InfoCard heading="Total Students" value="150"/>
             <InfoCard heading="Total Students" value="150"/>
             <InfoCard heading="Total Students" value="150"/>
-        </div>
-        <div className="graph-cont">
-            <GraphCard/>
         </div>
       </div>
     </Wrapper>
@@ -44,7 +42,9 @@ padding:30px;
 .graph-cont{
     display:flex;
     width: 100%;
+    height:100%;
     justify-content: space-evenly;
+    align-items:center;
     gap: 40px;
     flex-wrap: wrap;
     border-radius: 15px;

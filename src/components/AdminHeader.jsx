@@ -8,6 +8,7 @@ import classIcon from "../icon/class.png";
 import subjectIcon from "../icon/subject.png";
 import attendanceIcon from "../icon/attendance.png";
 import settingIcon from "../icon/setting.png";
+import homeIcon from "../icon/home.png"
 import { AnimatePresence, motion } from 'framer-motion';
 
 
@@ -53,15 +54,16 @@ const AdminHeader = () => {
       variants={variant1} 
       className='header'>
         <nav className='nav'>
-            <Link className='link' to="/">Students</Link>
-            <Link className='link' to="">Teachers</Link>
-            <Link className='link' to="">Subjects</Link>
-            <Link className='link' to="">Classes</Link>
-            <Link className='link' to="">Attendance</Link>
-            <Link className='link' to="">Users</Link>
+        <Link className='link' to="/admin">Home</Link>
+            <Link className='link' to="/admin/student">Students</Link>
+            <Link className='link' to="/admin/teacher">Teachers</Link>
+            <Link className='link' to="/admin/subject">Subjects</Link>
+            <Link className='link' to="/admin/class">Classes</Link>
+            <Link className='link' to="/admin/attendance">Attendance</Link>
+            <Link className='link' to="/admin/user">Users</Link>
         </nav>
         <div className="setting">
-            <Link className='setting-link' to="">FAQ</Link>
+            <Link className='setting-link' to="/admin/faq">FAQ</Link>
         </div>
       </motion.div> 
       :
@@ -74,15 +76,16 @@ const AdminHeader = () => {
        variants={variant1} 
        className='headerSm'>
         <nav className='nav'>
-            <Link className='link' to="/"><img src={studentIcon} alt="student" /></Link>
-            <Link className='link' to=""><img src={teacherIcon} alt="teacher" /></Link>
-            <Link className='link' to=""><img src={subjectIcon} alt="subject" /></Link>
-            <Link className='link' to=""><img src={classIcon} alt="class" /></Link>
-            <Link className='link' to=""><img src={attendanceIcon} alt="attendance" /></Link>
-            <Link className='link' to=""><img src={settingIcon} alt="setting" /></Link>
+            <Link className='link' to="/admin"><img src={homeIcon} alt="student" /></Link>
+            <Link className='link' to="/admin/student"><img src={studentIcon} alt="student" /></Link>
+            <Link className='link' to="/admin/teacher"><img src={teacherIcon} alt="teacher" /></Link>
+            <Link className='link' to="/admin/subject"><img src={subjectIcon} alt="subject" /></Link>
+            <Link className='link' to="/admin/class"><img src={classIcon} alt="class" /></Link>
+            <Link className='link' to="/admin/attendance"><img src={attendanceIcon} alt="attendance" /></Link>
+            <Link className='link' to="/admin/user"><img src={settingIcon} alt="setting" /></Link>
         </nav>
         <div className="setting">
-            <Link className='setting-link' to="">FAQ</Link>
+            <Link className='setting-link' to="/admin/faq">FAQ</Link>
         </div>
       </motion.div>}
      </AnimatePresence>

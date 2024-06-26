@@ -8,7 +8,12 @@ import ErrorPage from './pages/ErrorPage';
 import Login from './pages/Login';
 import AdminHome from "./pages/AdminHome";
 import AdminDashboard from './components/AdminDashboard';
-
+import AdminStudent from "./components/AdminStudent";
+import AdminTeacher from "./components/AdminTeacher";
+import AdminSubject from "./components/AdminSubject";
+import AdminClass from "./components/AdminClass";
+import AdminAttendance from "./components/AdminAttendance";
+import AdminUser from "./components/AdminUser";
 
 const router=createBrowserRouter([
   {
@@ -28,7 +33,38 @@ const router=createBrowserRouter([
     children:[
       {
         path:"/admin",
-        element:<AdminDashboard/>
+        element:<AdminDashboard/>,
+        errorElement:<ErrorPage/>
+      },
+      {
+        path:"/admin/student",
+        element:<AdminStudent/>,
+        errorElement:<ErrorPage/>,
+      },
+      {
+        path:"/admin/teacher",
+        element:<AdminTeacher/>,
+        errorElement:<ErrorPage/>
+      },
+      {
+        path:"/admin/subject",
+        element:<AdminSubject/>,
+        errorElement:<ErrorPage/>,
+      },
+      {
+        path:"/admin/class",
+        element:<AdminClass/>,
+        errorElement:<ErrorPage/>
+      },
+      {
+        path:"/admin/attendance",
+        element:<AdminAttendance/>,
+        errorElement:<ErrorPage/>
+      },
+      {
+        path:"/admin/user",
+        element:<AdminUser/>,
+        errorElement:<ErrorPage/>
       }
     ]
   },
