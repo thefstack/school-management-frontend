@@ -14,6 +14,8 @@ import AdminSubject from "./components/AdminSubject";
 import AdminClass from "./components/AdminClass";
 import AdminAttendance from "./components/AdminAttendance";
 import AdminUser from "./components/AdminUser";
+import { StudentProvider } from './Context/studentContect';
+import ViewStudent from "./components/view/ViewData"
 
 const router=createBrowserRouter([
   {
@@ -32,37 +34,43 @@ const router=createBrowserRouter([
     errorElement:<ErrorPage/>,
     children:[
       {
-        path:"/admin",
+        path:"",
         element:<AdminDashboard/>,
         errorElement:<ErrorPage/>
       },
       {
-        path:"/admin/student",
+        path:"student",
         element:<AdminStudent/>,
         errorElement:<ErrorPage/>,
       },
       {
-        path:"/admin/teacher",
+        path:"student/:id",
+        element:<ViewStudent/>,
+        errorElement:<ErrorPage/>
+      },
+      
+      {
+        path:"teacher",
         element:<AdminTeacher/>,
         errorElement:<ErrorPage/>
       },
       {
-        path:"/admin/subject",
+        path:"subject",
         element:<AdminSubject/>,
         errorElement:<ErrorPage/>,
       },
       {
-        path:"/admin/class",
+        path:"class",
         element:<AdminClass/>,
         errorElement:<ErrorPage/>
       },
       {
-        path:"/admin/attendance",
+        path:"attendance",
         element:<AdminAttendance/>,
         errorElement:<ErrorPage/>
       },
       {
-        path:"/admin/user",
+        path:"user",
         element:<AdminUser/>,
         errorElement:<ErrorPage/>
       }
@@ -78,7 +86,9 @@ const router=createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <StudentProvider>
+      <RouterProvider router={router}/>
+    </StudentProvider>
   </React.StrictMode>
 );
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link, Outlet } from 'react-router-dom';
+import AddTeacher from './Add/AddTeacher';
 
 const AdminTeacher = () => {
   return (
@@ -13,7 +14,7 @@ const AdminTeacher = () => {
           <Link className='link' to="/admin/teacher/remove">Remove Teacher</Link>
         </nav>
       </div>
-      <Outlet/>
+      <AddTeacher/>
     </Wrapper>
   )
 }
@@ -22,6 +23,7 @@ const Wrapper=styled.div`
 width:100%;
 height:100%;
 display:flex;
+flex-direction:column;
 
 .nav-link-cont{
     width:100%;

@@ -9,12 +9,15 @@ import FormLabel from "@mui/material/FormLabel";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import Button from '@mui/material/Button';
 
-const AddStudent = () => {
+const AddTeacher = () => {
   return (
     <Wrapper>
-      <form action="">
+      <form className="form">
+      <h1>Add Teacher</h1>
         <TextField
+            className="input"
           id="outlined-basic"
           label="Full Name"
           variant="filled"
@@ -23,6 +26,7 @@ const AddStudent = () => {
           required
         />
         <TextField
+        className="input"
           id="outlined-basic"
           label="DOB (dd/mm/yyyy)"
           variant="filled"
@@ -30,7 +34,7 @@ const AddStudent = () => {
           style={{ background: "#FAE6D5" }}
           required
         />
-        <FormControl>
+        <FormControl className="input-radio">
           <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
@@ -49,6 +53,7 @@ const AddStudent = () => {
         </FormControl>
 
         <TextField
+        className="input"
           id="outlined-basic"
           label="Father Name"
           variant="filled"
@@ -57,6 +62,7 @@ const AddStudent = () => {
           required
         />
         <TextField
+        className="input"
           id="outlined-basic"
           label="Mother Name"
           variant="filled"
@@ -64,15 +70,9 @@ const AddStudent = () => {
           style={{ background: "#FAE6D5" }}
           required
         />
+    
         <TextField
-          id="outlined-basic"
-          label="Guardian Name"
-          variant="filled"
-          size="small"
-          style={{ background: "#FAE6D5" }}
-          required
-        />
-        <TextField
+        className="input"
           id="outlined-basic"
           label="Phone Number"
           variant="filled"
@@ -81,13 +81,14 @@ const AddStudent = () => {
           required
         />
         <TextField
+        className="input"
           id="outlined-basic"
           label="Alternate Phone Number"
           variant="filled"
           size="small"
           style={{ background: "#FAE6D5" }}
         />
-        <FormControl fullWidth>
+        <FormControl fullWidth className="input">
           <InputLabel id="demo-simple-select-label">Religion</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -102,7 +103,7 @@ const AddStudent = () => {
           </Select>
         </FormControl>
 
-        <FormControl fullWidth>
+        <FormControl fullWidth className="input">
           <InputLabel id="demo-simple-select-label">Category</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -118,6 +119,7 @@ const AddStudent = () => {
         </FormControl>
 
         <TextField
+        className="input"
           id="outlined-basic"
           label="Village"
           variant="filled"
@@ -126,6 +128,7 @@ const AddStudent = () => {
           required
         />
         <TextField
+        className="input"
           id="outlined-basic"
           label="Pincode"
           variant="filled"
@@ -134,6 +137,7 @@ const AddStudent = () => {
           required
         />
         <TextField
+        className="input"
           id="outlined-basic"
           label="Landmark"
           variant="filled"
@@ -141,6 +145,7 @@ const AddStudent = () => {
           style={{ background: "#FAE6D5" }}
         />
         <TextField
+        className="input"
           id="outlined-basic"
           label="Aadhar"
           variant="filled"
@@ -148,18 +153,78 @@ const AddStudent = () => {
           style={{ background: "#FAE6D5" }}
         />
         <TextField
+        className="input"
           id="outlined-basic"
           label="Email"
           variant="filled"
           size="small"
           style={{ background: "#FAE6D5" }}
         />
-
+        <Button variant="contained">Submit</Button>
       </form>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:50px;
 
-export default AddStudent;
+
+
+.form{
+    background-color: #FAD396;
+    width:80%;
+    max-width:500px;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    padding:50px;
+    gap:20px;
+    border-radius: 10px;
+    box-shadow: 5px 5px #EE7C20;
+
+    h1{
+        text-align: center;
+    }
+    .input{
+        background-color: #FAE6D5;
+        width:100%;
+    }
+    .input-radio{
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: #FAE6D5;
+        padding: 5px 10px;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        width:100%
+    }
+    button{
+      background:#EE7C20;
+    }
+}
+@media(max-width:550px){
+    padding:50px 20px;
+    .form{
+        width: 90%;
+        padding:20px;
+    }
+
+}
+@media(max-width:300px){
+    padding:50px 10px;
+    .form{
+        h1{
+            font-size: 1rem;
+        }
+    }
+}
+`;
+
+export default AddTeacher;

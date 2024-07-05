@@ -18,12 +18,12 @@ const AdminHome = () => {
 const Wrapper=styled.section`
 width:100%;
 position:relative;
-
+height:100%;
 
 .admin-home-cont{
     display: flex;
     width: 100%;
-    height:"100%";
+    height:100%;
     flex-direction: row;
     
     .admin-header-component{

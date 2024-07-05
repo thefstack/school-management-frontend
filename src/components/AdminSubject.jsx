@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
-import { Link, Outlet } from 'react-router-dom';
+import { Link} from 'react-router-dom';
+import AddSubject from './Add/AddSubject';
 
 const AdminSubject = () => {
   return (
@@ -13,7 +14,7 @@ const AdminSubject = () => {
           <Link className='link' to="/admin/subject/remove">Remove Subject</Link>
         </nav>
       </div>
-      <Outlet/>
+      <AddSubject/>
     </Wrapper>
   )
 }
@@ -22,6 +23,7 @@ const Wrapper=styled.div`
 width:100%;
 height:100%;
 display:flex;
+flex-direction:column;
 
 .nav-link-cont{
     width:100%;
