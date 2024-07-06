@@ -14,6 +14,20 @@ const StudentReducer=(state,action)=>{
                 singleStudent:action.payload
             }
         }
+        case "DELETE_SUCCESS":{
+            return{
+                ...state,
+                isLoading:false,
+                isDeleted:true
+            }
+        }
+        case "DELETE_ERROR":{
+            return{
+                ...state,
+                isLoading:false,
+                isDeleted:false
+            }
+        }
         case "API_ERROR":{
             return {
                 ...state,

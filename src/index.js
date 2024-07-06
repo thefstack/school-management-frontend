@@ -15,7 +15,7 @@ import AdminClass from "./components/AdminClass";
 import AdminAttendance from "./components/AdminAttendance";
 import AdminUser from "./components/AdminUser";
 import { StudentProvider } from './Context/studentContect';
-import ViewStudent from "./components/view/ViewData"
+import ViewStudent from "./components/view/ViewStudentData"
 
 const router=createBrowserRouter([
   {

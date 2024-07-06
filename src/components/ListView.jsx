@@ -1,129 +1,250 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useStudentContext } from '../Context/studentContect';
-import { Link } from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 
 const ListView = (props) => {
-  let {setIsAdding,setIsView}=useStudentContext();
+  const { setIsAdding, removeStudent, isError} = useStudentContext();
 
-    
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [studentIdToRemove, setStudentIdToRemove] = useState(null);
+  const [isRes,setIsRes]=useState(false);
+  
+
+  const confirmRemoveStudent = (id) => {
+    setStudentIdToRemove(id);
+    setShowConfirm(true);
+  };
+  
+  const handleConfirm = (res) => {
+    if (res && studentIdToRemove !== null) {
+      removeStudent(studentIdToRemove);
+    }
+    setShowConfirm(false);
+    setStudentIdToRemove(null);
+  };
+  useEffect(()=>{
+    if(isError){
+      setIsRes(true)
+      setTimeout(() => {
+        setIsRes(false)
+      }, 6000);
+    }
+  },[isError])
+
   return (
     <Wrapper>
       <div className="header">
-        <input type="text" placeholder='Search'/>
-        <button onClick={()=>{setIsAdding()}} className='add-btn'>Add</button>
+        <input type="text" placeholder="Search" />
+        <button onClick={() => setIsAdding(true)} className="add-btn">Add</button>
       </div>
       <div className="data-display">
         <table>
-          <tr>
-            <th>Student Id</th>
-            <th>Name</th>
-            <th>Father Name</th>
-            <th>Mother Name</th>
-            <th>Village</th>
-          </tr>
-          {props.data.map((student)=>(
-            <tr key={student.id}>
-            <td>{student.id}</td>
-            <td>{student.name}</td>
-            <td>{student.father_name}</td>
-            <td>{student.mother_name}</td>
-            <td>{student.village}</td>
-            <td><Link to={`/admin/student/${student.id}`} onClick={()=>{setIsView()}} className='view-btn'>View</Link></td>
-          </tr>
-          ))}
+          <thead>
+            <tr>
+              <th>Student Id</th>
+              <th>Name</th>
+              <th>Father Name</th>
+              <th>Mother Name</th>
+              <th>Village</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {props.data.map((student) => (
+              <tr key={student.id}>
+                <td>{student.id}</td>
+                <td>{student.name}</td>
+                <td>{student.father_name}</td>
+                <td>{student.mother_name}</td>
+                <td>{student.village}</td>
+                <td className="view-x-btn">
+                  <Link to={`/admin/student/${student.id}`} className="view-btn">View</Link>
+                  <button
+                    style={{ backgroundColor: "red" }}
+                    className="view-btn"
+                    onClick={() => confirmRemoveStudent(student.id)}
+                  >
+                    X
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
+
+      {showConfirm && (
+        <div className="confirm-remove">
+          <div className="in">
+            <p>Are you sure you want to remove this student?</p>
+            <div className="btn-cont">
+              <button className="btn" onClick={() => handleConfirm(true)}>Yes</button>
+              <button className="btn" onClick={() => handleConfirm(false)}>No</button>
+            </div>
+          </div>
+        </div>
+      )}
+      {isRes && <div className='response'>Error</div>}
     </Wrapper>
-  )
-}
+  );
+};
 
+const Wrapper = styled.div`
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
 
-const Wrapper=styled.div`
-width:100%;
-padding:20px;
-display:flex;
-flex-direction:column;
-gap:10px;
+  .response {
+    position: absolute;
+    background: #ffd4b1;
+    box-shadow: 5px 5px 0 #EE7C20;
+    padding: 10px 50px;
+    left: 50%;
+    top: 10px;
+    transform: translateX(-50%);
+  }
 
-.header{
+  .confirm-remove {
     width: 100%;
-    display:flex;
-    gap:30px;
-    input{
-        padding:5px 10px;
-        border: none;
-        outline: none;
-        border: 1px solid #EE7C20;
-        border-radius: 5px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    gap: 15px;
+    padding: 30px 50px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+
+    .in {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      padding: 30px 50px;
+      background: #ffd4b1;
+      border-radius: 15px;
+      box-shadow: 5px 5px 0 #EE7C20;
     }
-    .add-btn{
-      padding: 5px 15px;
-                outline: none;
-                border: none;
-                background-color: #EE7C20;
-                border-radius: 10px;
-                display: flex;
-                align-items: center;
-                height: 30px;
-                color: #fff;
-                justify-content: center;
-                transition: 0.5s;
-            }
-            .add-btn:hover{
-                background: #ffd4b1;
-                color:#000
-            }
-}
-.data-display{
+
+    .btn-cont {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+
+      .btn {
+        padding: 5px 15px;
+        outline: none;
+        border: none;
+        background-color: #EE7C20;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        height: 30px;
+        color: #fff;
+        justify-content: center;
+        transition: 0.5s;
+        cursor: pointer;
+        font-weight: 700;
+      }
+
+      .btn:nth-child(1) {
+        &:hover {
+          background: #FF5733;
+        }
+      }
+
+      .btn:nth-child(2) {
+        &:hover {
+          background: #DFFF00;
+          color: #000;
+        }
+      }
+    }
+  }
+
+  .header {
     width: 100%;
-    overflow-x: scroll;
+    display: flex;
+    gap: 30px;
+
+    input {
+      padding: 5px 10px;
+      border: 1px solid #EE7C20;
+      border-radius: 5px;
+    }
+
+    .add-btn {
+      padding: 5px 15px;
+      outline: none;
+      border: none;
+      background-color: #EE7C20;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      height: 30px;
+      color: #fff;
+      justify-content: center;
+      transition: 0.5s;
+      cursor: pointer;
+    }
+
+    .add-btn:hover {
+      background: #ffd4b1;
+      color: #000;
+    }
+  }
+
+  .data-display {
+    width: 100%;
+    overflow-x: auto;
     min-height: 60vh;
     border: 1px solid;
 
-    table{
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      th, td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .view-x-btn {
         display: flex;
-        width: 100%;
-        flex-direction: column;
-        gap:10px;
+        gap: 8px;
+      }
 
-        tr{
-            width: max-content;
-            display:grid;
-            grid-template-columns: repeat(6,150px);
-            gap: 10px;
-            padding: 5px;
-            text-align: center;
-            border-bottom: 1px solid;
+      .view-btn {
+        padding: 5px 15px;
+        outline: none;
+        border: none;
+        background-color: #EE7C20;
+        border-radius: 10px;
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        cursor: pointer;
+      }
 
-            td,td{
-                overflow: hidden;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .view-btn{
-                padding: 5px 15px;
-                outline: none;
-                border: none;
-                background-color: #EE7C20;
-                border-radius: 10px;
-                display: flex;
-                align-items: center;
-                height: 30px;
-                color: #fff;
-                justify-content: center;
-                transition: 0.5s;
-                text-decoration:none;
-            }
-            .view-btn:hover{
-                background: #ffd4b1;
-                color:#000
-            }
-        }
+      .view-btn:hover {
+        background: #ffd4b1;
+        color: #000;
+      }
     }
-}
-
+  }
 `;
-export default ListView
+
+export default ListView;

@@ -19,6 +19,7 @@ let initialState = {
   singleStudent:{},
   isAdding: false,
   isView:false,
+
 };
 
 const StudentProvider = ({ children }) => {
@@ -52,6 +53,15 @@ const StudentProvider = ({ children }) => {
       dispatch({ type: "API_ERROR", payload: initialState.isAdding });
     }
   };
+
+  const removeStudent=async(id)=>{
+    await dispatch({type:"SET_LOADING"})
+    try{
+      const res=await axios.delete(`${API}student/${id}`);
+    }catch(error){
+      dispatch({ type: "API_ERROR" });
+    }
+  }
   const setIsView = async () => {
     try {
       await dispatch({ type: "SET_ISVIEW" });
@@ -61,10 +71,10 @@ const StudentProvider = ({ children }) => {
   };
   useEffect(() => {
     getStudent(`${API}student`);
-  }, []);
+  }, [removeStudent]);
 
   return (
-    <AppContext.Provider value={{ ...state, getStudent, setIsAdding, setIsView,getStudentById }}>
+    <AppContext.Provider value={{ ...state, getStudent, setIsAdding, setIsView,getStudentById, removeStudent }}>
       {children}
     </AppContext.Provider>
   );
